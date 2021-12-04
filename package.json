@@ -23,6 +23,7 @@
     "eslint": "^8.4.0",
     "kleur": "^4.1.4",
     "nyc": "^15.1.0",
+    "p-each-series": "^3.0.0",
     "standard-version": "^9.3.2",
     "tsup": "^5.10.1",
     "typescript": "^4.5.2",
