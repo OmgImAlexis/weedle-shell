@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "A decent shell",
   "main": "bin/wshell",
+  "bin": {
+    "wshell": "bin/wshell",
+    "weedle-shell": "bin/wshell"
+  },
   "scripts": {
     "start": "bin/wshell",
     "build": "tsup ./src/weedle-shell.ts",

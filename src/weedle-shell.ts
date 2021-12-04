@@ -104,6 +104,7 @@ const exec = (line: string) => {
       // Check $PATH for process
       case Object.keys(globalPath).includes(command):
         console.info('Found %s, running…', globalPath[command]);
+        console.info('This is not implemented yet, sorry.');
         break;
 
       default:
@@ -117,7 +118,6 @@ const exec = (line: string) => {
 
   // Check directory
   // Check file and launch
-  // Check $PATH
 };
 
 
