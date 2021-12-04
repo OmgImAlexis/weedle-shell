@@ -1,4 +1,3 @@
-import kleur from "kleur";
 import { createInterface } from "readline";
 import { builtIns } from "./builtIns";
 import { exec } from "./exec";
@@ -6,6 +5,7 @@ import { write } from "./history";
 import { aliases } from './config/aliases';
 import { path } from './config/path';
 import { loadDotRc } from "./common/load-dot-rc";
+import { getPrompt } from "./common/get-prompt";
 
 const getCompletions = () => [
     ...Object.keys(builtIns),
@@ -25,7 +25,7 @@ export const createReadLineInterface = async () => {
     const rl = createInterface({
         input: process.stdin,
         output: process.stdout,
-        prompt: `${kleur.green('➜')} `,
+        prompt: getPrompt(),
         completer
     });
 
@@ -40,6 +40,9 @@ export const createReadLineInterface = async () => {
     
     // Send initial prompt
     rl.prompt();
+
+    // Set prompt to have new line after it
+    rl.setPrompt(`\n${getPrompt()}`);
 
     return rl;
 }

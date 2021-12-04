@@ -1,6 +1,7 @@
 import { createReadLineInterface } from './create-read-line';
 import { exec } from './exec';
 import { write } from './history';
+import { name } from './config/name';
 
 const weedleShell = async (argv: string[]) => {
   const [flag, ...args] = argv;
@@ -19,10 +20,10 @@ const weedleShell = async (argv: string[]) => {
     // Start readline
     const readLine = await createReadLineInterface();
 
-    console.info('You have 30s before the demo will exit. Enjoy 🐄');
+    console.info('You have 30s before the demo will exit. Enjoy 🐛');
     readLine.prompt();
 
-    // Bail in debug mode
+    // Bail in demo mode
     setTimeout(() => {
       process.exit(0);
     }, 30_000);

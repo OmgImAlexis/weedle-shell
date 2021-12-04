@@ -4,6 +4,7 @@ import { env } from './config/env';
 import { name } from './config/name';
 import { version } from './config/version';
 import { Interface } from 'readline';
+import { getPrompt } from './common/get-prompt';
 
 export const getFullCompletions = () => ({
   ...builtIns,
@@ -42,6 +43,10 @@ export const builtIns: Record<string, BuiltFunction> = {
         resolve();
       }, time);
     })
+  },
+  cd(readLine, directory) {
+    process.chdir(directory);
+    readLine.setPrompt(`\n${getPrompt()}`);
   },
   exit(_readLine, exitCode: string) {
     process.exit(exitCode ? parseInt(exitCode, 10) : 0);
