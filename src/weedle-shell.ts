@@ -48,7 +48,13 @@ const loadAliases = () => {
 
 const loadGlobalPath = () => {
   const dirs = process.env.PATH.split(':');
-  const files = dirs.map(dir => readdirSync(dir).filter(filePath => lstatSync(join(dir, filePath)).isFile()).map(file => [file, join(dir, file)])).flat();
+  const files = dirs.map(dir => {
+    try {
+      return readdirSync(dir).filter(filePath => lstatSync(join(dir, filePath)).isFile()).map(file => [file, join(dir, file)]);
+    } catch {
+      return [];
+    }
+  }).flat();
   return Object.fromEntries(files);
 };
 
@@ -112,16 +118,33 @@ const exec = (line: string) => {
   // Check directory
   // Check file and launch
   // Check $PATH
-  rl.prompt();
 };
 
-rl.on('line', writeHistory);
-rl.on('line', exec);
 
-// Send initial prompt
-rl.prompt();
+const [_, __, flag, ...args] = process.argv;
+if (flag === '-c') {
+  const line = args.join(' ');
 
-// Bail in debug mode
-setTimeout(() => {
+  // Write line to history file
+  writeHistory(line);
+
+  // Run command
+  exec(line);
+  
+  // Exit
   process.exit(0);
-}, 30_000)
+} else {
+  rl.on('line', writeHistory);
+  rl.on('line', line => {
+    exec(line);
+    rl.prompt();
+  });
+  
+  // Send initial prompt
+  rl.prompt();
+  
+  // Bail in debug mode
+  setTimeout(() => {
+    process.exit(0);
+  }, 30_000)
+}

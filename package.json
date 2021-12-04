@@ -2,8 +2,9 @@
   "name": "weedle-shell",
   "version": "1.0.0",
   "description": "A decent shell",
-  "main": "dist/wshell.js",
+  "main": "bin/wshell",
   "scripts": {
+    "start": "bin/wshell",
     "build": "tsup ./src/weedle-shell.ts",
     "test": "nyc npm run test"
   },
