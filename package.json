@@ -1,6 +1,6 @@
 {
   "name": "weedle-shell",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A decent shell",
   "bin": {
     "wshell": "bin/wshell"
