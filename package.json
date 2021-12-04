@@ -2,10 +2,8 @@
   "name": "weedle-shell",
   "version": "1.0.0",
   "description": "A decent shell",
-  "main": "bin/wshell",
   "bin": {
-    "wshell": "bin/wshell",
-    "weedle-shell": "bin/wshell"
+    "wshell": "bin/wshell"
   },
   "scripts": {
     "start": "bin/wshell",
